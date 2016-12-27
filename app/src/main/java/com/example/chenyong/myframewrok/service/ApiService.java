@@ -25,7 +25,7 @@ import rx.Observable;
  * Created by focus on 16/8/16.
  */
 public interface ApiService {
-    @GET("rest/album/list")
+    @GET("/rest/album/list")
     Call<List<AlbumModel>> listAlbum();
 
     @GET("rest/album/list")

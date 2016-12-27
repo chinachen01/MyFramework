@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-
 import com.example.chenyong.myframewrok.Model.AlbumModel;
 import com.example.chenyong.myframewrok.Model.ResponseResult;
 import com.example.chenyong.myframewrok.Model.User;
@@ -59,12 +58,13 @@ public class MainActivity extends AppCompatActivity {
         categories.put("category", "others");
         categories.put("page", "1");
         categories.put("rows", "1");
-        Call<List<AlbumModel>> listCall = RetrofitClient.INSTANCE.getRetrofit().create(ApiService.class).listAlbum(categories);
+        Call<List<AlbumModel>> listCall = RetrofitClient.getRetrofit().create(ApiService.class).listAlbum();
         listCall.enqueue(new Callback<List<AlbumModel>>() {
             @Override
             public void onResponse(Call<List<AlbumModel>> call, Response<List<AlbumModel>> response) {
                 StringBuilder builder = new StringBuilder();
-                for (AlbumModel contributor : response.body()) {
+                List<AlbumModel> list = response.body();
+                for (AlbumModel contributor : list) {
                     builder.append(contributor.getName() + " | ");
                 }
                 mResultText.setText(builder.toString());
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         User user = new User();
         user.userId = "456446431455";
         user.deviceId = "45454564231464";
-        Call<ResponseResult<Object>> listCall = RetrofitClient.INSTANCE.getRetrofit().create(ApiService.class).foo(user);
+        Call<ResponseResult<Object>> listCall = RetrofitClient.getRetrofit().create(ApiService.class).foo(user);
         listCall.enqueue(new Callback<ResponseResult<Object>>() {
             @Override
             public void onResponse(Call<ResponseResult<Object>> call, Response<ResponseResult<Object>> response) {
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void rxQuery() {
-        Observable<List<AlbumModel>> observable = RetrofitClient.INSTANCE.getRetrofit().create(ApiService.class).rxListAlbum();
+        Observable<List<AlbumModel>> observable = RetrofitClient.getRetrofit().create(ApiService.class).rxListAlbum();
     }
 
 }

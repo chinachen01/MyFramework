@@ -13,7 +13,7 @@ public class NetworkUtil {
     public static final String picPort = ":8082";
     public static final String airPath = "/rest";
     public static final String groundPath = "/gps";
-    public static String airIp = "api.feitian-tech-system.com";
+    public static String airIp = "192.168.36.163";
     public static String groundIp = "api.feitian-tech-system.com";
     public static String webClientHost = "/PortalApp";
     public static String airHost = NetworkUtil.airIp+NetworkUtil.airPort+NetworkUtil.airPath;
